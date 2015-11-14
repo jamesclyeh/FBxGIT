@@ -19,6 +19,8 @@ def full_list(request):
 
 def add_list(request):
     dic = {}
+    dic['cats'] = enumerate(set(x.category for x in Goods.objects.all()));
+
     return TemplateResponse(request, 'add_list.html', dic)
 
 def upload(request):
