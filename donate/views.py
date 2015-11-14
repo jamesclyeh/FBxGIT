@@ -29,6 +29,7 @@ def full_list(request, category=None):
 def add_list(request):
     dic = {}
     dic['cats'] = set(x.category for x in Goods.objects.all());
+    dic['charity'] = []
     return TemplateResponse(request, 'add_list.html', dic)
 
 def getUser(request):
