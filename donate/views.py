@@ -15,9 +15,11 @@ def index(request):
 def fonts(request):
     return redirect('/static/%s'%request.path)
 
-def full_list(request):
+def full_list(request, category=None):
     dic = {}
-    dic['goods'] = Goods.objects.all()
+    dic['category'] = category
+    if not category: dic['goods'] = Goods.objects.all()
+    else: dic['goods'] = Goods.objects.all().filter(category=category) 
     for goods in dic['goods']:
         goods.picture = '/'.join(str(goods.picture).split('/')[1:])
     return TemplateResponse(request, 'full_list.html', dic)
@@ -26,6 +28,14 @@ def add_list(request):
     dic = {}
     dic['cats'] = enumerate(set(x.category for x in Goods.objects.all()));
     return TemplateResponse(request, 'add_list.html', dic)
+
+def getUser(request):
+    dic = {}
+    u = User.objects.get(FB_ID = request.GET['FB_ID'])
+    lis = u.goods_donor.all()
+    dic['user'] = u
+    dic['goods'] = lis
+    return TemplateResponse(request, 'profile.html', dic)
 
 @csrf_exempt
 def upload(request):
