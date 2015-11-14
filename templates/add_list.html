@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block contents %}
+
+    <div class="container" style="margin-top: 30px">
+        <div class="row">
+            <form role="form">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="name">Enter Name</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" name="name" placeholder="Enter Name">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">Enter Price</label>
+
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="Price" name="price" min="0" max="99999999" placeholder="Enter Price">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+
+                        <div class="input-group">
+                            <textarea name="description" id="InputMessage" class="form-control" rows="5"></textarea>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <img>
+                        <input type="file" name="picture" class="col-lg-offset-5">
+                    </div>
+                </div>
+                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info col-lg-offset-3">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
