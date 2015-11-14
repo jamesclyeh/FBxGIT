@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from donate.models import Goods
+from donate.models import User
 from donate.form import GoodsForm
 
 # Create your views here.
@@ -41,18 +42,17 @@ def getUser(request):
 @csrf_exempt
 def upload(request):
     formset = GoodsForm(request.POST)
-    if formset.is_valid():
-        print "HERE"
-        g = Goods(
-            price = request.POST.get('price', ''),
-            description = request.POST.get('description', ''),
-            donor = request.COOKIES['user_id'],
-            category = request.POST.get('category', ''),
-            picture = request.POST.get('picture', '')
-        )
-        g.save()
-    print "NOW"
-    return HttpResponse(request, 'index.html', {})
+    u = User.objects.get(FB_ID = request.COOKIES['user_id'])
+    g = Goods(
+        name = request.POST.get('name', ''),
+        price = request.POST.get('price', ''),
+        description = request.POST.get('description', ''),
+        donor = u,
+        category = request.POST.get('category', ''),
+        picture = request.POST.get('picture', '')
+    )
+    g.save()
+    return TemplateResponse(request, 'index.html', {})
 
 @csrf_exempt
 def sold(request):
