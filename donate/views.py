@@ -8,6 +8,9 @@ from django.template.response import TemplateResponse
 def index(request):
     return TemplateResponse(request, 'index.html', {})
 
+def full_list(request):
+    return TemplateResponse(request, 'full_list.html', {})
+
 def fblogin(request):
     template = loader.get_template('login.html')
     context = RequestContext(request, {

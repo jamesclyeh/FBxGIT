@@ -21,5 +21,6 @@ from donate import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
-    url(r'^login/', views.fblogin, name='index'),
+    url(r'^login/', views.fblogin, name='fblogin'),
+    url(r'^login/', views.full_list, name='full_index'),
 ]
