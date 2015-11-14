@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.template.response import TemplateResponse
+from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_exempt
 
 from donate.models import Goods
 
@@ -9,6 +11,9 @@ from donate.models import Goods
 
 def index(request):
     return TemplateResponse(request, 'index.html', {})
+
+def fonts(request):
+    return redirect('/static/%s'%request.path)
 
 def full_list(request):
     dic = {}
@@ -23,6 +28,7 @@ def add_list(request):
 
     return TemplateResponse(request, 'add_list.html', dic)
 
+@csrf_exempt
 def upload(request):
     formset = GoodsForm(request.POST)
     if formset.is_valid():
@@ -30,11 +36,21 @@ def upload(request):
         g = Goods(
             price = request.POST.get('price', ''),
             description = request.POST.get('description', ''),
-            donor = request.COOKIES['id'],
+            donor = request.COOKIES['user_id'],
             category = request.POST.get('category', ''),
             picture = request.POST.get('picture', '')
         )
         g.save()
+    print "NOW"
+    return HttpResponse("Text", context_type = 'text/plain')
+
+@csrf_exempt
+def sold(request):
+    formset = GoodsForm(request.POST)
+    if formset.is_valid():
+        print "HERE"
+        Goods.objects.filter(pk=request.POST.get('pk', '')).update(consumer=request.POST.get('consumer', ''))
+        Goods.objects.filter(pk=request.POST.get('pk', '')).update(status='S')
     print "NOW"
     return HttpResponse("Text", context_type = 'text/plain')
 
