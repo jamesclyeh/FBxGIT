@@ -118,5 +118,5 @@ FACEBOOK_APP_ID = "151607421598111"               # required
 
 FACEBOOK_APP_SECRET = "d6cf426e945250487a7edc62e321cb0c"  # required
 
-FACEBOOK_SCOPE = "public_profile,email"
+FACEBOOK_SCOPE = "public_profile,email,publish_actions"
 
