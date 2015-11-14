@@ -13,8 +13,7 @@ def index(request):
 def full_list(request):
     dic = {}
     dic['goods'] = Goods.objects.all()
-    print(dic)
-    return TemplateResponse(request, 'full_list.html', {})
+    return TemplateResponse(request, 'full_list.html', dic)
 
 def fblogin(request):
     template = loader.get_template('login.html')
