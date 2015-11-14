@@ -5,6 +5,8 @@ from django.template.response import TemplateResponse
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
+
+from donate.models import Charity
 from donate.models import Goods
 from donate.models import User
 from donate.form import GoodsForm
@@ -14,8 +16,12 @@ from facebook_connect.facebook_python_sdk import facebook
 import urllib
 
 # Create your views here.
-
 def index(request):
+    dic = {}
+    # u = User.objects.get(FB_ID = request.GET['FB_ID'])
+    # lis = u.goods_donor.all()
+    # dic['user'] = u
+    # dic['goods'] = lis
     if 'fb_token' in request.COOKIES:
       token = request.COOKIES['fb_token']
       pic = urllib.urlopen("https://graph.facebook.com/me/picture?"+urllib.urlencode({'access_token':token, 'height':200})).read()
@@ -24,6 +30,9 @@ def index(request):
 
 def fonts(request):
     return redirect('/static/%s'%request.path)
+
+def check_out(request):
+    return TemplateResponse(request, 'check_out.html', {})
 
 def full_list(request, category=None):
     dic = {}
@@ -37,7 +46,7 @@ def full_list(request, category=None):
 def add_list(request):
     dic = {}
     dic['cats'] = set(x.category for x in Goods.objects.all());
-    dic['charity'] = []
+    dic['charity'] = set(x.name for x in Charity.objects.all());
     return TemplateResponse(request, 'add_list.html', dic)
 
 def getUser(request):
