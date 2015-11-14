@@ -24,7 +24,7 @@ class Charity(models.Model):
     amount_need = models.IntegerField()
 
     def __str__(self):
-        return self.name
+        return self.amount_need
 
 
 class Goods(models.Model):
