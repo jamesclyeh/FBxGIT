@@ -1,5 +1,4 @@
 from django.db import models
-# from django.contrib.auth.models import AbstractBaseUser
 import random
 
 # Create your models here.
@@ -18,6 +17,13 @@ class User(models.Model):
         return self.FB_ID
 
 
+class Charity(models.Model):
+
+    name = models.CharField(max_length=100)
+    description = models.TextField(max_length=300)
+    amount_need = models.IntegerField()
+
+
 class Goods(models.Model):
 
     STATUS = (
@@ -34,6 +40,8 @@ class Goods(models.Model):
     description = models.TextField(max_length=300)
     donor = models.ForeignKey(User, related_name='goods_donor')
     comsumer = models.ForeignKey(User, related_name='goods_consumer', null=True, blank=True)
+    charity_donor = models.ForeignKey(Charity, related_name='charity_donor')
+    charity_consumer = models.ForeignKey(Charity, related_name='charity_consumer')
     category = models.CharField(max_length=100,
                                 choices=CATEGORIES,
                                 default='C')
@@ -45,9 +53,3 @@ class Goods(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Charity(models.Model):
-
-    name = models.CharField(max_length=100)
-    description = models.TextField(max_length=300)
