@@ -106,6 +106,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static_file'),
 )
 
-
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates').replace('\\', '/'),
+)
 
 
