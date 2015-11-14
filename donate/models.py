@@ -13,8 +13,8 @@ class User(models.Model):
     is_admin = models.BooleanField(default=False)
     points = models.IntegerField()
 
-    def __str__(self):
-        return self.FB_ID
+    # def __str__(self):
+    #     return self.FB_ID
 
 
 class Charity(models.Model):
@@ -23,8 +23,8 @@ class Charity(models.Model):
     description = models.TextField(max_length=300)
     amount_need = models.IntegerField()
 
-    def __str__(self):
-        return self.amount_need
+    # def __str__(self):
+    #     return self.amount_need
 
 
 class Goods(models.Model):
@@ -44,7 +44,7 @@ class Goods(models.Model):
     donor = models.ForeignKey(User, related_name='goods_donor')
     comsumer = models.ForeignKey(User, related_name='goods_consumer', null=True, blank=True)
     charity_donor = models.ForeignKey(Charity, related_name='charity_donor')
-    charity_consumer = models.ForeignKey(Charity, related_name='charity_consumer')
+    charity_consumer = models.ForeignKey(Charity, related_name='charity_consumer', null=True, blank=True)
     category = models.CharField(max_length=100,
                                 choices=CATEGORIES,
                                 default='C')
