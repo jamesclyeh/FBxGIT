@@ -15,6 +15,10 @@ def full_list(request):
     dic['goods'] = Goods.objects.all()
     return TemplateResponse(request, 'full_list.html', dic)
 
+def add_list(request):
+    dic = {}
+    return TemplateResponse(request, 'add_list.html', dic)
+
 def upload(request):
     g = Goods(name = request.POST.get('name', ''),
         price = request.POST.get('price', ''),
