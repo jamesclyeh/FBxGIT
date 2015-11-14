@@ -105,6 +105,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static_file'),
+    os.path.join(BASE_DIR, 'pictures'),
 )
 
 FACEBOOK_LOGIN_REDIRECT = "/"                              # (optional, defaults to "/")
