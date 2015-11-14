@@ -17,6 +17,7 @@ from facebook_connect.models import FacebookUser
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
+
 @require_POST
 @csrf_exempt
 def facebook_connect(request):
@@ -30,12 +31,13 @@ def facebook_connect(request):
 
         sig, expected_sig = get_sig_and_expected_sig(request_sig, settings.FACEBOOK_APP_SECRET)
 
+        print sig, expected_sig
         if sig == expected_sig:
             try:
                 f_user = FacebookUser.objects.get(facebook_id=user_id)
-
+                print f_user
             except FacebookUser.DoesNotExist:
-
+                print "Add to DB"
                 # Facebook api to get the user profile
                 profile = facebook.GraphAPI(access_token).get_object('me')
 
@@ -44,10 +46,10 @@ def facebook_connect(request):
 
                 # Create the user
                 user = User()
-                user.save()
 
                 user.FB_ID = user_id
                 user.name = first_name + " " +last_name
+                user.points = 0
 
                 # Attempt to set the email
                 try:
@@ -66,17 +68,18 @@ def facebook_connect(request):
                 temp.update(str(datetime.datetime.now()))
                 password = temp.hexdigest()
 
-                user.set_password(password)
+                #user.set_password(password)
                 f_user.contrib_password = password
 
                 # Save
+                print "Saving..."
                 f_user.save()
                 user.save()
 
             # Authenticate and login
-            authenticated_user = auth.authenticate(username=f_user.contrib_user.username,
-                                                   password=f_user.contrib_password)
-            auth.login(request, authenticated_user)
+            #authenticated_user = auth.authenticate(username=f_user.contrib_user.name,
+            #                                       password=f_user.contrib_password)
+            #auth.login(request, authenticated_user)
 
         else:
 
@@ -88,6 +91,7 @@ def facebook_connect(request):
             return json_response(content, 200)
 
     except Exception, e:
+        print e
         content = {
             "is_error" : True,
             "error_text" : "Error in ajax call, exception: %s" % e
