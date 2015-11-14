@@ -1,229 +1,243 @@
 {% extends "base.html" %}
 {% block contents %}
     <style>
-.square, .btn {
-    border-radius: 0px!important;
-}
+        .square, .btn {
+            border-radius: 0px !important;
+        }
 
-/* -- color classes -- */
-.coralbg {
-    background-color: #FA396F;
-}
+        /* -- color classes -- */
+        .coralbg {
+            background-color: #FA396F;
+        }
 
-.coral {
-    color: #FA396f;
-}
+        .coral {
+            color: #FA396f;
+        }
 
-.turqbg {
-    background-color: #46D8D2;
-}
+        .turqbg {
+            background-color: #46D8D2;
+        }
 
-.turq {
-    color: #46D8D2;
-}
+        .turq {
+            color: #46D8D2;
+        }
 
-.white {
-    color: #fff!important;
-}
+        .white {
+            color: #fff !important;
+        }
 
-/* -- The "User's Menu Container" specific elements. Custom container for the snippet -- */
-div.user-menu-container {
-  z-index: 10;
-  background-color: #fff;
-  margin-top: 20px;
-  background-clip: padding-box;
-  opacity: 0.97;
-  filter: alpha(opacity=97);
-  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-}
+        /* -- The "User's Menu Container" specific elements. Custom container for the snippet -- */
+        div.user-menu-container {
+            z-index: 10;
+            background-color: #fff;
+            margin-top: 20px;
+            background-clip: padding-box;
+            opacity: 0.97;
+            filter: alpha(opacity=97);
+            -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+        }
 
-div.user-menu-container .btn-lg {
-    padding: 0px 12px;
-}
+        div.user-menu-container .btn-lg {
+            padding: 0px 12px;
+        }
 
-div.user-menu-container h4 {
-    font-weight: 300;
-    color: #8b8b8b;
-}
+        div.user-menu-container h4 {
+            font-weight: 300;
+            color: #8b8b8b;
+        }
 
-div.user-menu-container a, div.user-menu-container .btn  {
-    transition: 1s ease;
-}
+        div.user-menu-container a, div.user-menu-container .btn {
+            transition: 1s ease;
+        }
 
-div.user-menu-container .thumbnail {
-   width:100%;
-   min-height:200px;
-   border: 0px!important;
-   padding: 0px;
-   border-radius: 0;
-   border: 0px!important;
-}
+        div.user-menu-container .thumbnail {
+            width: 100%;
+            min-height: 200px;
+            border: 0px !important;
+            padding: 0px;
+            border-radius: 0;
+            border: 0px !important;
+        }
 
-/* -- Vertical Button Group -- */
-div.user-menu-container .btn-group-vertical {
-    display: block;
-}
+        /* -- Vertical Button Group -- */
+        div.user-menu-container .btn-group-vertical {
+            display: block;
+        }
 
-div.user-menu-container .btn-group-vertical>a {
-    padding: 20px 25px;
-    background-color: #46D8D2;
-    color: white;
-    border-color: #fff;
-}
+        div.user-menu-container .btn-group-vertical > a {
+            padding: 20px 25px;
+            background-color: #46D8D2;
+            color: white;
+            border-color: #fff;
+        }
 
-div.btn-group-vertical>a:hover {
-    color: white;
-    border-color: white;
-}
+        div.btn-group-vertical > a:hover {
+            color: white;
+            border-color: white;
+        }
 
-div.btn-group-vertical>a.active {
-    background: #FA396F;
-    box-shadow: none;
-    color: white;
-}
-/* -- Individual button styles of vertical btn group -- */
-div.user-menu-btns {
-    padding-right: 0;
-    padding-left: 0;
-    padding-bottom: 0;
-}
+        div.btn-group-vertical > a.active {
+            background: #FA396F;
+            box-shadow: none;
+            color: white;
+        }
 
-div.user-menu-btns div.btn-group-vertical>a.active:after{
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  margin-top: -13px;
-  border-left: 0;
-  border-bottom: 13px solid transparent;
-  border-top: 13px solid transparent;
-  border-left: 10px solid #46D8D2;
-}
-/* -- The main tab & content styling of the vertical buttons info-- */
-div.user-menu-content {
-    color: #323232;
-}
+        /* -- Individual button styles of vertical btn group -- */
+        div.user-menu-btns {
+            padding-right: 0;
+            padding-left: 0;
+            padding-bottom: 0;
+        }
 
-ul.user-menu-list {
-    list-style: none;
-    margin-top: 20px;
-    margin-bottom: 0;
-    padding: 10px;
-    border: 1px solid #eee;
-}
-ul.user-menu-list>li {
-    padding-bottom: 8px;
-    text-align: center;
-}
+        div.user-menu-btns div.btn-group-vertical > a.active:after {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            margin-top: -13px;
+            border-left: 0;
+            border-bottom: 13px solid transparent;
+            border-top: 13px solid transparent;
+            border-left: 10px solid #46D8D2;
+        }
 
-div.user-menu div.user-menu-content:not(.active){
-  display: none;
-}
+        /* -- The main tab & content styling of the vertical buttons info-- */
+        div.user-menu-content {
+            color: #323232;
+        }
 
-/* -- The btn stylings for the btn icons -- */
-.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
-.btn-labeled {padding-top: 0;padding-bottom: 0;}
+        ul.user-menu-list {
+            list-style: none;
+            margin-top: 20px;
+            margin-bottom: 0;
+            padding: 10px;
+            border: 1px solid #eee;
+        }
 
-/* -- Custom classes for the snippet, won't effect any existing bootstrap classes of your site, but can be reused. -- */
+        ul.user-menu-list > li {
+            padding-bottom: 8px;
+            text-align: center;
+        }
 
-.user-pad {
-    padding: 20px 25px;
-}
+        div.user-menu div.user-menu-content:not(.active) {
+            display: none;
+        }
 
-.no-pad {
-    padding-right: 0;
-    padding-left: 0;
-    padding-bottom: 0;
-}
+        /* -- The btn stylings for the btn icons -- */
+        .btn-label {
+            position: relative;
+            left: -12px;
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 3px 0 0 3px;
+        }
 
-.user-details {
-    background: #eee;
-    min-height: 333px;
-}
+        .btn-labeled {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
 
-.user-image {
-  max-height:200px;
-  overflow:hidden;
-}
+        /* -- Custom classes for the snippet, won't effect any existing bootstrap classes of your site, but can be reused. -- */
 
-.overview h3 {
-    font-weight: 300;
-    margin-top: 15px;
-    margin: 10px 0 0 0;
-}
+        .user-pad {
+            padding: 20px 25px;
+        }
 
-.overview h4 {
-    font-weight: bold!important;
-    font-size: 40px;
-    margin-top: 0;
-}
+        .no-pad {
+            padding-right: 0;
+            padding-left: 0;
+            padding-bottom: 0;
+        }
 
-.view {
-    position:relative;
-    overflow:hidden;
-    margin-top: 10px;
-}
+        .user-details {
+            background: #eee;
+            min-height: 333px;
+        }
 
-.view p {
-    margin-top: 20px;
-    margin-bottom: 0;
-}
+        .user-image {
+            max-height: 200px;
+            overflow: hidden;
+        }
 
-.caption {
-    position:absolute;
-    top:0;
-    right:0;
-    background: rgba(70, 216, 210, 0.44);
-    width:100%;
-    height:100%;
-    padding:2%;
-    display: none;
-    text-align:center;
-    color:#fff !important;
-    z-index:2;
-}
+        .overview h3 {
+            font-weight: 300;
+            margin-top: 15px;
+            margin: 10px 0 0 0;
+        }
 
-.caption a {
-    padding-right: 10px;
-    color: #fff;
-}
+        .overview h4 {
+            font-weight: bold !important;
+            font-size: 40px;
+            margin-top: 0;
+        }
 
-.info {
-    display: block;
-    padding: 10px;
-    background: #eee;
-    text-transform: uppercase;
-    font-weight: 300;
-    text-align: right;
-}
+        .view {
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
 
-.info p, .stats p {
-    margin-bottom: 0;
-}
+        .view p {
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
 
-.stats {
-    display: block;
-    padding: 10px;
-    color: white;
-}
+        .caption {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(70, 216, 210, 0.44);
+            width: 100%;
+            height: 100%;
+            padding: 2%;
+            display: none;
+            text-align: center;
+            color: #fff !important;
+            z-index: 2;
+        }
 
-.share-links {
-    border: 1px solid #eee;
-    padding: 15px;
-    margin-top: 15px;
-}
+        .caption a {
+            padding-right: 10px;
+            color: #fff;
+        }
 
-.square, .btn {
-    border-radius: 0px !important;
-}
+        .info {
+            display: block;
+            padding: 10px;
+            background: #eee;
+            text-transform: uppercase;
+            font-weight: 300;
+            text-align: right;
+        }
 
-/* -- media query for user profile image -- */
-@media (max-width: 767px) {
-    .user-image {
-        max-height: 400px;
-    }
-}
+        .info p, .stats p {
+            margin-bottom: 0;
+        }
+
+        .stats {
+            display: block;
+            padding: 10px;
+            color: white;
+        }
+
+        .share-links {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .square, .btn {
+            border-radius: 0px !important;
+        }
+
+        /* -- media query for user profile image -- */
+        @media (max-width: 767px) {
+            .user-image {
+                max-height: 400px;
+            }
+        }
     </style>
     <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
     <div class="container" style="margin-top: 10%">
@@ -242,7 +256,7 @@ div.user-menu div.user-menu-content:not(.active){
                     </div>
                     <div class="col-md-6 no-pad">
                         <div class="user-image">
-                            <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/p320x320/11895977_805865546177831_5235501428755376334_n.jpg?oh=b46400e20afef617f5f8346fb54d4440&oe=56F2C09E&__gda__=1454742306_454175d90f786fdd35764bdd6936e91e"
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxQTEhUUEhQUFBUUFBUVFBQUFBQUFBQUFRUXFhQUFBQYHCggGBolHBQUITEhJSkrLi4vFx8zODMsNygtLisBCgoKDg0OGhAQGiwkHyQsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLP/AABEIAKgBLAMBIgACEQEDEQH/xAAcAAAABwEBAAAAAAAAAAAAAAAAAQIDBAUGBwj/xABAEAACAQICBgcGBAUDBAMAAAABAgADEQQhBQYSMUFREyJhcYGRoQcyscHR8EJSYnIUI4Lh8TOispKjwtIVJDT/xAAaAQADAQEBAQAAAAAAAAAAAAABAwQCAAUG/8QAJxEAAgIBAwQCAwEBAQAAAAAAAAECEQMSITEEIjJRQWETcYGR8CP/2gAMAwEAAhEDEQA/AO0Fonakbp47TM+e/JYwdiS0VaJKzdAC24hmjmxB0cNOjhoNHAIYpxYnJewBKI4IkQ7xsXQRYhxAMBaURyHC4IkGGJtTsAcEEEal7AHCMEELZwImvWVFLOQqqCWJNgAN5JiiZxT2l64Ni3OGw7WoIf5jjLpCpz/oB3c9/KZc9C+xkMbmyN7QfaA2LZqOGJWgDYsLhqx7vy9niZhUw5ZgtttzuQbh2seP33RWKxC0wAm89UHiSTuHKaDU/DDr3Fqgazc7cPCIlJpWXY8avSHgNXL2NQ7bf7R2KPnNJhNX1HAS1wOEtaWgpyfU5clVKPBnauhFtuHlMxpzVpTcgAeE6JVlTjkymk64A+7k43j9COh3SHTwh4gzp+NwwMzmOp2OQlMcrZJPAlujPLgueUIsq8LxekattxlYzRy3ES2J/wDFx6nXv9+UqgZJw75eHrOaAjTapaRNHEU3U22XU35C+d+y3znp7D1NpQw4i88l6Pbr9+flv9CZ6X1FxnS4Gix37AB716pPpfxmIupAyrts0EOIJhgxmtWIoVBCvDjNQCmoUTLCmkZSPqZ4OKKQxi7QoLxJMok0AXCMb24XSTrs4dMbZoYaAwSVnBKYsCIig0EduTgyYkNCbOGizXycOLFQhDlMFRwd4UEAm92AOHaCRdJ45aFJ6r+6iljzNtwHaTYDvjtoq2DkwntU1o6MfwlInbdb1iMiqNuS/AtnfsnG8fixTUgb+PafpLDT2lmarUqub1arlj+m/AdwsPATH43EXzPh9ZLFPJK2X7Y40NVazM4tctcWA53yt4zomgVqUsVTSuV6Rk3qffS25hwYHMcwDymf1R1aaoDUqXAYdQbjvB2u/LKayhoWu2JpOalwjgm+8gKRw42NprLKL7fRvDCaqXs3dMZRxnyykatWCiZjH4U7Zda9RCx3BshJE/ZW03waaq0hYgylVsVTG0HGIXipAV7dh4yRhtJLVFxkRkynJlPIiGvlGb+GR8SuZ+8pmtKpYeM1Ve2+YzTuL3jtMbj5F5HsZjSJuRb7zMiHjHq7Zjx+JjPOWrgglyFH6H36mMAZyxw+H6pJ3bvLf8DBJ0gxjbHtG/6i9/0nov2aLbR9Ht2z5sSPjPPGjKf80dgz+M9Las4XosLRT8tNb99hf4SeT7jWRVD+lyGjokdTJCibhuTMOCCCN4MlbRaS1jdOlaPqJ5ePHRoKJcxTyNUvGNHBVHiVWAJHtiBII3tWgNaG1OF0MzKLTANtVjlK8IUc4+iQLdnWLQRYhLFR6RwYhwocfEAIYEKHeOjQATnXtd0wURKQOWdR/wCnJPC9z37M6JOK+2zEH+IRN10F/wBgJI8z/wABFZ3sl7HYF3nLMZULEk9/9pEwGG6avTp/ncA/t3t6Ax3FP5S89mmA6TGbRGVJCf6mOyPTahvTBsorVNI6ngMCFUADhlH8TUFIZZseHKScZVUKAuRtM5WrktnI0i5u2TcOxa5Mo8do9auICV6hpUybKy7ieG059zy8eE02ETKJxuDVwQReFbbgatNHP8XpY4LEtTRzUog2zZWIsSD7uQzBy385dGola1WmdmpbePxDkw4iQNKarZk0zs34ZEeXGOaJ0Q1IAbRNoyWl7oXBSXbLdFjUrG2eRmE1l9/vm0xgymJ1hNyOwn4Q4+QZeClqrmvbn8TGfv0ljWpWXa5KQO89UfH0kSnT6wHHd8zKYytEko0xzAYcs+7dc/IetpdLR3IPvizH0HjGMKOjW/E/YjlSrs0y3F+qp7B7zeJNvERU22x8Eoot9S8D0+KUAZGoq94v1v8AaDPRy0rAAcAB5Ccj9i2i7sKrDJQzeJOwvptes7ATMR3bf8J+ofC/7cQiSQsSsUY+KpWTMEEAgmuQDawGBYoiSuJoQYno44YBFnCAkUBDJiNuc2kcKCwEQAwmh5OCilEbjizKSs4XaC0K8OPVM4EOFBGLYAcEEE2gAnnv2r6QFfG1Cp6qWojtFLOob/vJHhO86WxBSi7J7+ydj91sj3Df4TzdrjT2KrL+RKak3vdtgM7eJN+8mIyS7lEp6ePLMpiTedC9kmGApVqpy2qgQE8kUH4uZz3EZL2n/Pzmy1aqONHq1MElKlRiOZJsPQes1k8Cnp1qynQ9JUL2YMQV4Am1u0bjKiuCw6qnaPZl33hYHSNRqKOw6hVb2IOxlubjluzlrhwN/wAJI7Rc1X2ScCpCgHgJIqWiFewjFavBZyRHxSCVtR7SRicTKXG4sC8KOaQzpPEixmL0i+03POT9L4++6V2DS7XPDM/TxJAlEVSsmyO3QNJGwVPygFh+u1wPAkRvR9AXLNuXf3nhENdnLbyDf+onL77InFVrLsDvbtPL4xqW1Inb3tjqu1VwBvY2F+A/Exh4ip0tUKnurZE7eR8czIvTdGh/O4IH6U3Hz3dwM0fs80UalQORcA5dpJtfyv5QTahFy9cHQ7np/rO56gaLFDDAcbKPLf63mptImj6eygHICTQYvGu0lyy1SbAsOCHGiwQQGJmnscC0ImFtQSSU74CCC0UBBAofJw08aCG8fMAgo4CCLMReEWm3NJAFGFeNs0RtRTmEfBiwY0sWJqMjhd4IUMRydnBiCCFeNugEbH09oKP1H1puPnPNetblqrE8ah8r7I9FnpXFPkDyIPrPM+srXqVD+q/hcmTPfJZX0/izLaSe7WnUtQsG9PAU2IuKm2xX9Jc7JHDMfGcmxbXYzv2rlRDhKGx7vQ07d2wI/NtBId07/wDRsz+MpBSeiLJfetjsnmCOUe1eeqCVdepbqtyPK0ucRSF8o0j2kbl7L3JPhEgvIWKqRdStIGJrQIzZDxVSUOPqS0xVYTNaTxYzjoIXklRWYprsBzMlV/5adpAPifdHhmfESNosBmao3ur8TwjONxe0dpud7dudvpHabdE2qo37BVqbCj8xF+77+shL+Ztw3DiTwETUqbRJbd97pHrVdo9m4DkI+MSeUh6irVXHEk7h6ADyE7h7OtFhWRPyDabv+zOZ6maP63SEZ3ATv5+l52rUDC2VnO85C/P7Mi6meqaguEUQjoxOT5ZuKYhl42HiS03qIB9akWGkUGHtzSkCiXeCRRUixVm/yHUJEeUxDiMGpI/EJMvBGkMcvGxnYBLiMM8XVqSNe8Tkl6OHlaLvEU1jloIoFhGFBsxxFhqwhCLWGFhgRsYAAIcEEeo0cAmR6taKr1LCZTWjWenhVzIaoR1aYOf7m5CKlJt0ajFt7DuuGsKYWlmQalTKmnfkWPYLzgml2ux7doeI3fD1kzTenXrVWqO20x8gBusOA5D7NJisTe57bju4/GdGD1WWwSjGihffNJqrrlUwg6NgXo3JC36yX37N947Jm6vPn9mNXlrgpKmTqbhK0dbo68YZx/qBexgVPrJCafpv7jBh+k3+E4zNxomhsInYBJM2GMFaK8HUSyOmjV1tLDt8jKrF6ZEdeoNnrnLtNpn9I6WpgkU1DHnwk+O5PZFWSorkGN0xfdeUjO1VrDdHGZ6hzNhyG4RupiAo2aefNufYJbGNcckM5XzwO4zEhQKabl3kfibj9JBzOZj9DBs2Zy7eMGMAQWE2mlshcre7IFV75R3BUNpwOZjCmaPVfCdY1CLhZrJLRFszihrma/Q2GA2RbKmpP9RH+BOu6sUdmgvb9/Sct0IMr82HxF/jOuaMXZpIOSj6zyYedsr6p9qSJYYxW1CQRZpx5ADaiYoJAROAEBFxDCC80zkSqsaVYp3jD1YuVHEkGJJjKNeSUEMWmZGuiiloSRAZp40dYhVhkRV4TGFpJHCYoRCxyYicC8O8KETGaqODJiKlYAEkgAbydwkLSOPWkpZzYD7sJy3W/XFn6lM2HZ8e3v8ALnMLI29jePG5/ovdctflpgpQILbi53L+0cTOSYmvVxLO1yQOtUqMbgXORZuZOQX6RVPDtXY9bZVc3qNuUfM8hIul9JLYUqItSUk/vbcajczbLsEbFb/ZTSiqRV4tgMgcuJO8yKzkjs3RaXc8bDfbLwEv9WtVauNq7CCwUAsWuFprwLH4AXJ8zH1RmzI4kxmd1w/srwaD+YXrNxJZkS/Yqm/mTDq6oYOn7uHpeK7X/K8LzKIFicvk4jgcKWYXFgDcnumjr6TsLKN3E/SdAxOAoWt0NLu6NfpKs6CwrG7UiRxCVHTysbekU5xm9x0ccsa7TB1q7vvJPw8AI1YD3j4Df5TolbUShUUth6jm2+m7HaXkL38uB58Jn6mrgQ25c5uXYjEXrf2Zs7T9UDZXlz75ZYLRA3tLVMDsx4LFPI3sjaguWQqlAKMhbLhMvpV7taabSNSwMyeIa7GMwrexeV7UJw6XIA4za4JBTphBxAJP33eszeiKOe0eG75+nxl3ha20b8MrdwOX32zOd3sN6daVZttWaW0viAP+oeu/znXhQso7AJyvUxOtSXLOoAeduqTOvVRlI8cd2zHUy3SIqNJAaRt0M1YU6JmiSTEMI0rxRaMMi7QtmKUxVobQCMlS8cVLyFh2tJivJ0ttwsd2YYeMtVjD1ZzdcALBakWGldTcyVSadGbASLxJEMGKEb5HCVEWIcEbGNHAtIuNxCopZiFVQSSdwA3mSGac79qOlzspQQ2DdaqeOyPdUDtNz4CZnT2RqEdToyetGtLYhzs5ICdhTllu2m7fvtmNxDlibE2/E549i8pYV6Q43tyvb5SFiKxG5Bbhvt6CahCuC2klQ1WqMVCLdUHDmeJN+MYXAKd4v6COdM5/KvcM/C+ckYfBu+Z2rfHkAOcalXBljNJQuSC3dmfhO0asaMGGw60/xHrVDxZyM/LcO6cu0JRRsXh6KnaY1AzBcwq07udphkb7NsvPhOw3mZ7MMdwqrypxxyMsKplVjHimxsUZ/GjOZ7H13puHReruex979w4W4GaHGtK6+c6DpmpxtUP4LSJXZq0xtc13bS36yny85b6ZorUUVk3MAT2hvdY9o90yjw6BRZchmbd5ufjL3QnWpNT5Mw8HF/8AkGMpxNSTh/hJnTg1k/0zdakJDr07SXp3Cs6dTIqwa3MiVuE22BLEm2Vst+/wt8zFadrG6t6KLTVW0zyLcy51huGtKmmLZx+PxET8iX0thsj7+/kJd4KwKA7rgHuUXmcwwu00mFXcTwU38f8AEXmVIfidnRNQ0P8AFUgRwD93VS/qJ1xxOUaln/79IHeaZvwzXL1ABnWG3SbGtmK6jyREdYSUOcdJjlNhum4xQhsaajYZRorJzESMyTM16MiqceAjSLHJyRxUqLSSix1aEdVbSRWzmyK1OICSTVaR9qHg4fppHUEbpAyUixqVgDURcAhx8InBRDGLMQzRkcUp8AboYqbR/vMTrHq701QVa1QKq5FUG8bwOkYgX7JtKzMdxC9trnwle+CW+YLN+Zjc+HLwlUemjH7Ojka4OfY3AoB/KoqvDbZSXPdfrfKUdTVyo5uwNr7yLfW3rOsNgV32F/OQ9IVadJS9QhQBmWI9Jp4vYxZvhHPl1ap0lNSoQAoub/Pie6ZDSGIfEVSlPqruAGQA5NbeT+UTU6ax1bSNQU6F0pA++RYt+oDlbjNLoHVqjhlAUAtxY7/7SXJkSdRKscG1cip1H1b6BukYZ7JAJ94k2z7Bvy7ZtTGk3xbNENjiPXaVWNaWOIMqsYZlm0UmM3ypNYCqUJ94Bh37iPQHzltijKfSGBFS18iDkRymoV8gndbDmLrFNl/wg2cfpOV/A29Zc6pYvb6QgEDq2vxsd/qZU0kITZc7WVibWv4S71YoBQ4G4bIHiWPylGBrWiXqU/xtkXGb2/cw8mIlaaK3YjebXz493OS8ewq7WyxHXbNTYgg/3lPh02C7dYi29t5tuvfxinyxkeEZbWth0oUcBn4/4lLVNpJx9fbqs3afIZCQna5lUFSRPJ7tk3Ry9b78ZoqW8L2AH5jzlToWln2E2+vxl/oemGqXO6/Hxt6D1k2eRVhjsdF1dFtKUTwKVB5Ltf8AkJ0+s05jq3/+6jf8NWsAeNjQyvzyCzfYusbxMZ1Fk+fyX6JO3G3qSJSqmPqhaZ/JYmiTTq3jhjS0rR1ZpW+QMVCJjbGJImnI4eJkWvWtHyI01O8kUWwpDCEtJdGhFUaFpIAtGRh7OYESLjZeGGjVJIzQuCJvDBhUwCajRsmEzRJaetjjpikKbA0aZRxiK+JAHEnkM5V4kVamVyo7MvC+R8vObAkNaX0slPqptVKnBENz/UdyiUaavPiHFTFnatmtEf6afu/Oe/KaXA6MRBkJOVLTNXyb1aeDKUsIqVatgB1wB2AIto+p4dpj+mqezULD8QDeIGyfQLImEbauZ5mVVNo9LE7gmPpCqGGpjdUxQ5Ii4hpVYtpYYkyqxEyzZWYiRDJdYSFU3zSAxquxCkjeBfvtmRNFq7cUNpt7Ese4bvnKRKe1lzyl10oTDPsgkIpT/pNmHeG2x4Srp+W/RH1XCXtlUwAFhl95yl1gxHR0WPZYd5k/DFiLs179gAHdMbrjjCagTKwzsD5X7YqEblQ2UqjZQk5RFMXMVUyjuCTPxlnCJat0XmDXZp5b7H4f3mg1eTj4DylLs9VR+n4nL4TWaBw9lQW/ED4Z3+M87LI9GCo0+r4P8ZTPNqrf9pVm/p07mY3VujfFqPyU3z/ds/8ArNzTS0RF2iPqPJfoAoSTRSEBCdtmNjGnZPY48jM9jAte8JxeMk9tjInpLmL24wVtEF4lX8hsYo6yKzIvQV1281Z1VVI4dYnK+4cyQBJX/wAsgudl8hf3ey488rd8EEp0RFxb+WPtpVB7oLWJHVzyABLd2fpG6mmFsSEqGwucsxc2Fx274IJpwitjQ22mVH4H7LWN+dpHraz01JsjMAwW6lCSCCQQu1tXa3VFrtwgggeONHWStD6X6ckdE9Oyqw2tk3DC/A78xLRtxggmFFakcRCYRMKCeuJYhk84Lff0ggnADtyhX++EOCccVenaV0VuRsf2tx89mVtGnsrbnnCgkHVKpWej0jbhX2KBjNYwQSMtRAxBlbWgggNEGqsg4qnYA/qA/wBpPyhwQoyyTg0AG0fwhm8he0l4tejopT4kXbtORJ8WPpBBKce2OTRJlV5op/ZQVMQArMcgpI8BObYmuatRmPE38OEEE1hXLBlfCGqozk3BISR3/Z9YIIyb7TMF3F8u/wAQo+P1m00NYKDwCjxtcmHBPOy8l8eDZ6j0y1WpUINyPp/ebfZyhQTOFbEPUeYStEYg5QQRl7E7KIMwYntk1MWLQQTEQCKmIEINeCCczkf/2Q=="
                                  class="img-responsive thumbnail">
                         </div>
                     </div>
