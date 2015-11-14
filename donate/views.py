@@ -9,6 +9,8 @@ from donate.models import Goods
 from donate.models import User
 from donate.form import GoodsForm
 
+from facebook_connect.facebook_python_sdk import facebook
+
 # Create your views here.
 
 def index(request):
@@ -21,7 +23,7 @@ def full_list(request, category=None):
     dic = {}
     dic['category'] = category
     if not category: dic['goods'] = Goods.objects.all()
-    else: dic['goods'] = Goods.objects.all().filter(category=category) 
+    else: dic['goods'] = Goods.objects.all().filter(category=category)
     for goods in dic['goods']:
         goods.picture = '/'.join(str(goods.picture).split('/')[1:])
     return TemplateResponse(request, 'full_list.html', dic)
@@ -52,6 +54,14 @@ def upload(request):
         picture = request.POST.get('picture', '')
     )
     g.save()
+
+    print facebook.GraphAPI(request.COOKIES['fb_token']).put_wall_post(
+        "I just put this item up to raise money for charity!!",
+        {"name": "Charty exchange",
+         "link": "http://140.113.89.232:12345/full_list/",
+         "caption": request.POST.get('name', ''),
+         "description": request.POST.get('description', '')})
+
     return TemplateResponse(request, 'index.html', {})
 
 @csrf_exempt
