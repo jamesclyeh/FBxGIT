@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from donate.models import Goods
+from donate.form import GoodsForm
 
 # Create your views here.
 
@@ -51,7 +52,7 @@ def upload(request):
         )
         g.save()
     print "NOW"
-    return HttpResponse("Text", context_type = 'text/plain')
+    return HttpResponse(request, 'index.html', {})
 
 @csrf_exempt
 def sold(request):
