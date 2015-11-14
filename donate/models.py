@@ -6,13 +6,13 @@ from django.db import models
 class Goods(models.Model):
 
     name = models.CharField(max_length=100)
-    price = models.IntegerField(min_value=0)
+    price = models.IntegerField()
     description = models.TextField(max_length=300)
-    picture = models.ImageField(upload_to='photos/%d' % self.id)
+    # picture = models.ImageField(upload_to='photos/%d' % self.id)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return name
+        return self.name
 
 
 class Charity(models.Model):
