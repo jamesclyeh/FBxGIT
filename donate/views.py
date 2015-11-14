@@ -15,9 +15,11 @@ def index(request):
 def fonts(request):
     return redirect('/static/%s'%request.path)
 
-def full_list(request):
+def full_list(request, category=None):
     dic = {}
-    dic['goods'] = Goods.objects.all()
+    dic['category'] = category
+    if not category: dic['goods'] = Goods.objects.all()
+    else: dic['goods'] = Goods.objects.all().filter(category=category) 
     for goods in dic['goods']:
         goods.picture = '/'.join(str(goods.picture).split('/')[1:])
     return TemplateResponse(request, 'full_list.html', dic)
@@ -31,7 +33,7 @@ def upload(request):
     formset = GoodsForm(request.POST)
     if formset.is_valid():
         print "HERE"
-	    g = Goods(
+	g = Goods(
             price = request.POST.get('price', ''),
             description = request.POST.get('description', ''),
             donor = request.COOKIES['user_id'],
