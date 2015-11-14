@@ -14,7 +14,7 @@ class User(models.Model):
     points = models.IntegerField()
 
     def __str__(self):
-        return self.FB_ID
+        return self.name
 
 
 class Charity(models.Model):
@@ -22,6 +22,9 @@ class Charity(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=300)
     amount_need = models.IntegerField()
+
+    def __str__(self):
+        return self.name
 
 
 class Goods(models.Model):
