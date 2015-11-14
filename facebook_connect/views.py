@@ -73,7 +73,7 @@ def facebook_connect(request):
 
                 # Save
                 print "Saving..."
-                f_user.save()
+                #f_user.save()
                 user.save()
 
             # Authenticate and login

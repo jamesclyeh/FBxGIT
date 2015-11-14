@@ -6,11 +6,20 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from donate.models import Goods
+from donate.models import User
 from donate.form import GoodsForm
+
+from facebook_connect.facebook_python_sdk import facebook
+
+import urllib
 
 # Create your views here.
 
 def index(request):
+    if 'fb_token' in request.COOKIES:
+      token = request.COOKIES['fb_token']
+      pic = urllib.urlopen("https://graph.facebook.com/me/picture?"+urllib.urlencode({'access_token':token, 'height':200})).read()
+
     return TemplateResponse(request, 'index.html', {})
 
 def fonts(request):
@@ -20,7 +29,7 @@ def full_list(request, category=None):
     dic = {}
     dic['category'] = category
     if not category: dic['goods'] = Goods.objects.all()
-    else: dic['goods'] = Goods.objects.all().filter(category=category) 
+    else: dic['goods'] = Goods.objects.all().filter(category=category)
     for goods in dic['goods']:
         goods.picture = '/'.join(str(goods.picture).split('/')[1:])
     return TemplateResponse(request, 'full_list.html', dic)
@@ -28,6 +37,7 @@ def full_list(request, category=None):
 def add_list(request):
     dic = {}
     dic['cats'] = set(x.category for x in Goods.objects.all());
+    dic['charity'] = []
     return TemplateResponse(request, 'add_list.html', dic)
 
 def getUser(request):
@@ -41,28 +51,31 @@ def getUser(request):
 @csrf_exempt
 def upload(request):
     formset = GoodsForm(request.POST)
-    if formset.is_valid():
-        print "HERE"
-        g = Goods(
-            price = request.POST.get('price', ''),
-            description = request.POST.get('description', ''),
-            donor = request.COOKIES['user_id'],
-            category = request.POST.get('category', ''),
-            picture = request.POST.get('picture', '')
-        )
-        g.save()
-    print "NOW"
-    return HttpResponse(request, 'index.html', {})
+    u = User.objects.get(FB_ID = request.COOKIES['user_id'])
+    g = Goods(
+        name = request.POST.get('name', ''),
+        price = request.POST.get('price', ''),
+        description = request.POST.get('description', ''),
+        donor = u,
+        category = request.POST.get('category', ''),
+        picture = request.POST.get('picture', '')
+    )
+    g.save()
+
+    print facebook.GraphAPI(request.COOKIES['fb_token']).put_wall_post(
+        "I just put this item up to raise money for charity!!",
+        {"name": "Charty exchange",
+         "link": "http://140.113.89.232:12345/full_list/",
+         "caption": request.POST.get('name', ''),
+         "description": request.POST.get('description', '')})
+
+    return TemplateResponse(request, 'index.html', {})
 
 @csrf_exempt
 def sold(request):
-    formset = GoodsForm(request.POST)
-    if formset.is_valid():
-        print "HERE"
-        Goods.objects.filter(pk=request.POST.get('pk', '')).update(consumer=request.POST.get('consumer', ''))
-        Goods.objects.filter(pk=request.POST.get('pk', '')).update(status='S')
-    print "NOW"
-    return HttpResponse("Text", context_type = 'text/plain')
+    g = Goods.objects.filter(pk=request.POST.get('pk', ''))
+    g.update(status='S')
+    return TemplateResponse(request, 'index.html', {})
 
 def fblogin(request):
     template = loader.get_template('login.html')
