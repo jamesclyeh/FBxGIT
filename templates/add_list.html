@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="sel1">Select Category</label>
-                                <select class="form-control" id="sel1">
+                                <select name="category" class="form-control" id="sel1">
                                     {% for idx, item in cats %}
                                         <option value="{{ idx }}">{{ item }}</option>
                                     {% endfor %}
@@ -48,7 +48,7 @@
                                         class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
                     </div>
-                    <input type='file' id="imgInp"/>
+                    <input type='file' name="picture" id="imgInp"/>
                     <img id="blah" src="#" alt="your image" style="max-width: 500px;max-height: 400px"/>
                 </div>
                 <div class="row" style="margin-top: 30px">
