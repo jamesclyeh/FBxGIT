@@ -20,8 +20,8 @@
                             <div class="form-group">
                                 <label for="sel1">Select Category</label>
                                 <select name="category" class="form-control" id="sel1">
-                                    {% for idx, item in cats %}
-                                        <option value="{{ idx }}">{{ item }}</option>
+                                    {% for item in cats %}
+                                        <option value="{{ item }}">{{ item }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

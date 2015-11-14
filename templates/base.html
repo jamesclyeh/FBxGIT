@@ -11,6 +11,10 @@
 <title>FBxGIT</title>
 <link rel="stylesheet" href={% static "bootstrap.min.css" %}>
 <script src="{% static "sweetalert.min.js" %}"></script>
+
+<!-- Latest jQuery form server -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="{% static "sweetalert.css" %}">
 
 <!-- Important: you'll only need one of the Bootcards CSS files below for every platform -->
@@ -44,7 +48,9 @@
                 <ul class="dropdown-menu">
                     <li><a href="/full_list/">Full list</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="">Category list</a></li>
+                    <li><a href="/full_list/C/">Clothes</a></li>
+                    <li><a href="/full_list/M/">Makeup and Cosmetics</a></li>
+                    <li><a href="/full_list/O/">Others</a></li>
                 </ul>
                 </li>
                 <li class="active"><a href="/add_list/">Put items for sell</a></li>
@@ -65,8 +71,6 @@
 
 </div>
 
-<!-- Latest jQuery form server -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Bootstrap JS form CDN -->
 <script src="{% static "bootstrap.min.js" %}"></script>
 <!-- Main Script -->
