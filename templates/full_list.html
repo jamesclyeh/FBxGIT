@@ -3,16 +3,39 @@
 
 <div class="row" style="margin-top:20px">
     {% for item in goods %}
-    <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ item.name }}</h3>
-            </div>
-            <div class="panel-body">
-                {{ item.description }}
+
+    <div class="panel panel-default bootcards-media">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ item.name }}</h3>
+        </div>
+        <div class="panel-body">
+            {{ item.description }}
+        </div>
+        <img src="{{ item.picture }}" class="img-responsive"/>
+        <div class="panel-footer">
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button class="btn btn-default">
+                        <i class="fa fa-arrow-down"></i>
+                        Download
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-default">
+                        <i class="fa fa-star"></i>
+                        Favorite
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-default">
+                        <i class="fa fa-envelope"></i>
+                        Email
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+
     {% endfor %}
 </div>
 
