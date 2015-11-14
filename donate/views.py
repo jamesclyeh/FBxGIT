@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 
+from donate.models import Charity
 from donate.models import Goods
 from donate.models import User
 from donate.form import GoodsForm
@@ -45,7 +46,7 @@ def full_list(request, category=None):
 def add_list(request):
     dic = {}
     dic['cats'] = set(x.category for x in Goods.objects.all());
-    dic['charity'] = []
+    dic['charity'] = set(x.name for x in Charity.objects.all());
     return TemplateResponse(request, 'add_list.html', dic)
 
 def getUser(request):
