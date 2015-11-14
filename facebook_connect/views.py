@@ -75,6 +75,8 @@ def facebook_connect(request):
                 print "Saving..."
                 f_user.save()
                 user.save()
+                response.set_cookie( 'cookie_name', 'cookie_value' )
+                response.set_cookie( 'cookie_name', 'cookie_value' )
 
             # Authenticate and login
             #authenticated_user = auth.authenticate(username=f_user.contrib_user.name,
@@ -105,7 +107,11 @@ def facebook_connect(request):
         "error_text" : None
     }
 
-    return json_response(content, 200)
+    response = json_response(content, 200)
+    response.set_cookie('user_id', user_id)
+    response.set_cookie('fb_token', access_token)
+
+    return response
 
 def channel_url(request):
     """
