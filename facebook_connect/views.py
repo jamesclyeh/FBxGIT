@@ -8,10 +8,10 @@ from facebook_python_sdk import facebook
 
 from django.conf import settings
 from django.contrib import auth
-from django.contrib.auth.models import User
+from donate.models import User
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-    
+
 from facebook_connect.models import FacebookUser
 
 from django.views.decorators.csrf import csrf_exempt
@@ -46,9 +46,8 @@ def facebook_connect(request):
                 user = User()
                 user.save()
 
-                user.username = u"fbuser_%s" % user.id
-                user.first_name = first_name
-                user.last_name = last_name
+                user.FB_ID = user_id
+                user.name = first_name + " " +last_name
 
                 # Attempt to set the email
                 try:
@@ -73,7 +72,7 @@ def facebook_connect(request):
                 # Save
                 f_user.save()
                 user.save()
-                        
+
             # Authenticate and login
             authenticated_user = auth.authenticate(username=f_user.contrib_user.username,
                                                    password=f_user.contrib_password)
@@ -87,7 +86,7 @@ def facebook_connect(request):
             }
 
             return json_response(content, 200)
-            
+
     except Exception, e:
         content = {
             "is_error" : True,
@@ -95,7 +94,7 @@ def facebook_connect(request):
         }
 
         return json_response(content, 200)
-            
+
 
     content = {
         "is_error" : False,
@@ -124,7 +123,7 @@ def base64_url_decode(inp):
     Base64 decode.
     """
     padding_factor = (4 - len(inp) % 4) % 4
-    inp += "="*padding_factor 
+    inp += "="*padding_factor
     return base64.b64decode(unicode(inp).translate(dict(zip(map(ord, u'-_'), u'+/'))))
 
 def get_sig_and_expected_sig(signed_request, secret):
