@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^add_list/', views.add_list, name='add_list'),
     url(r'^upload', views.upload, name='upload'),
     url(r'^fonts/.*', views.fonts, name='fonts'),
+    url(r'^sold', views.sold, name='sold'),
     url(r'^facebook_connect/', include('facebook_connect.urls')),
 ]

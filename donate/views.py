@@ -73,13 +73,9 @@ def upload(request):
 
 @csrf_exempt
 def sold(request):
-    formset = GoodsForm(request.POST)
-    if formset.is_valid():
-        print "HERE"
-        Goods.objects.filter(pk=request.POST.get('pk', '')).update(consumer=request.POST.get('consumer', ''))
-        Goods.objects.filter(pk=request.POST.get('pk', '')).update(status='S')
-    print "NOW"
-    return HttpResponse("Text", context_type = 'text/plain')
+    g = Goods.objects.filter(pk=request.POST.get('pk', ''))
+    g.update(status='S')
+    return TemplateResponse(request, 'index.html', {})
 
 def fblogin(request):
     template = loader.get_template('login.html')
