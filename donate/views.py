@@ -69,7 +69,8 @@ def upload(request):
         donor = u,
         charity_donor = c,
         category = request.POST.get('category', ''),
-        picture = request.POST.get('picture', '')
+        picture = request.POST.get('picture', ''),
+        charity_consumer = c,
     )
     g.save()
 
