@@ -11,9 +11,15 @@ from donate.form import GoodsForm
 
 from facebook_connect.facebook_python_sdk import facebook
 
+import urllib
+
 # Create your views here.
 
 def index(request):
+    if 'fb_token' in request.COOKIES:
+      token = request.COOKIES['fb_token']
+      pic = urllib.urlopen("https://graph.facebook.com/me/picture?"+urllib.urlencode({'access_token':token, 'height':200})).read()
+
     return TemplateResponse(request, 'index.html', {})
 
 def fonts(request):
