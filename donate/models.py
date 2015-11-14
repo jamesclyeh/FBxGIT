@@ -14,7 +14,7 @@ class User(models.Model):
     points = models.IntegerField()
 
     def __str__(self):
-        return self.name
+        return self.FB_ID
 
 
 class Charity(models.Model):
