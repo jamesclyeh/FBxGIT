@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
-</head>
-<body>
+{% extends "base.html" %}
+{% block contents %}
 <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -99,5 +94,4 @@
 <div id="status">
 </div>
 
-</body>
-</html>
+{% endblock %}
