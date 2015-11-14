@@ -28,6 +28,14 @@ def add_list(request):
 
     return TemplateResponse(request, 'add_list.html', dic)
 
+def getUser(request):
+    dic = {}
+    u = User.objects.get(FB_ID = request.GET['FB_ID'])
+    lis = u.goods_donor.all()
+    dic['user'] = u
+    dic['goods'] = lis
+    return TemplateResponse(request, 'profile.html', dic)
+
 @csrf_exempt
 def upload(request):
     formset = GoodsForm(request.POST)
