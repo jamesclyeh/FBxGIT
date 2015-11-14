@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.template.response import TemplateResponse
+from django.shortcuts import redirect
 
 from donate.models import Goods
 
@@ -9,6 +10,9 @@ from donate.models import Goods
 
 def index(request):
     return TemplateResponse(request, 'index.html', {})
+
+def fonts(request):
+    return redirect('/static/%s'%request.path)
 
 def full_list(request):
     dic = {}
