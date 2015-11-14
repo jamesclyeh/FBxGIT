@@ -26,14 +26,24 @@ def full_list(request, category=None):
 
 def add_list(request):
     dic = {}
+    dic['cats'] = enumerate(set(x.category for x in Goods.objects.all()));
+
     return TemplateResponse(request, 'add_list.html', dic)
+
+def getUser(request):
+    dic = {}
+    u = User.objects.get(FB_ID = request.GET['FB_ID'])
+    lis = u.goods_donor.all()
+    dic['user'] = u
+    dic['goods'] = lis
+    return TemplateResponse(request, 'profile.html', dic)
 
 @csrf_exempt
 def upload(request):
     formset = GoodsForm(request.POST)
     if formset.is_valid():
         print "HERE"
-	g = Goods(
+        g = Goods(
             price = request.POST.get('price', ''),
             description = request.POST.get('description', ''),
             donor = request.COOKIES['user_id'],
