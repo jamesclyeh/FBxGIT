@@ -75,8 +75,6 @@ def facebook_connect(request):
                 print "Saving..."
                 f_user.save()
                 user.save()
-                response.set_cookie( 'cookie_name', 'cookie_value' )
-                response.set_cookie( 'cookie_name', 'cookie_value' )
 
             # Authenticate and login
             #authenticated_user = auth.authenticate(username=f_user.contrib_user.name,
