@@ -1,8 +1,6 @@
 from django.db import models
 # from django.contrib.auth.models import AbstractBaseUser
-from FBxGIT import settings
-import os
-import shutil
+import random
 
 # Create your models here.
 
@@ -35,7 +33,7 @@ class Goods(models.Model):
     price = models.IntegerField()
     description = models.TextField(max_length=300)
     donor = models.ForeignKey(User, related_name='goods_donor')
-    comsumer = models.ForeignKey(User, related_name='goods_consumer', null=True)
+    comsumer = models.ForeignKey(User, related_name='goods_consumer', null=True, blank=True)
     category = models.CharField(max_length=100,
                                 choices=CATEGORIES,
                                 default='C')
@@ -43,21 +41,7 @@ class Goods(models.Model):
                               choices=STATUS,
                               default='U')
     created_at = models.DateTimeField(auto_now_add=True)
-    picture = models.ImageField(upload_to='pictures/%d')
-
-    def save(self):
-        if self.id is None:
-                super(Goods, self).save()
-                self.picture = self.get_path(self.picture)
-        super(Goods, self).save()
-
-    def get_path(self, filename):
-        save_name = os.path.join('pictures', '%s.jpg' % self.id)
-        current_path = os.path.join(settings.MEDIA_ROOT, self.picture)
-        new_path = os.path.join(settings.MEDIA_ROOT, save_name)
-        if os.path.exists(current_path):
-                shutil.move(current_path, new_path)
-        return save_name
+    picture = models.ImageField(upload_to='pictures/%d.jpg' % random.randint(0,1000000))
 
     def __str__(self):
         return self.name
