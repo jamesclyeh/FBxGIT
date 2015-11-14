@@ -5,6 +5,7 @@ from django.template.response import TemplateResponse
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
+
 from donate.models import Goods
 from donate.models import User
 from donate.form import GoodsForm
@@ -12,12 +13,19 @@ from donate.form import GoodsForm
 from facebook_connect.facebook_python_sdk import facebook
 
 # Create your views here.
-
 def index(request):
+    dic = {}
+    # u = User.objects.get(FB_ID = request.GET['FB_ID'])
+    # lis = u.goods_donor.all()
+    # dic['user'] = u
+    # dic['goods'] = lis
     return TemplateResponse(request, 'index.html', {})
 
 def fonts(request):
     return redirect('/static/%s'%request.path)
+
+def check_out(request):
+    return TemplateResponse(request, 'check_out.html', {})
 
 def full_list(request, category=None):
     dic = {}
