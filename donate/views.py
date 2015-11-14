@@ -13,6 +13,8 @@ def index(request):
 def full_list(request):
     dic = {}
     dic['goods'] = Goods.objects.all()
+    for goods in dic['goods']:
+        goods.picture = '/'.join(str(goods.picture).split('/')[1:])
     return TemplateResponse(request, 'full_list.html', dic)
 
 def add_list(request):
