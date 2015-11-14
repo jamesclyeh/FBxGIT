@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'donate',
+    'facebook_connect',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,3 +106,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static_file'),
 )
+
+FACEBOOK_LOGIN_REDIRECT = "/"                              # (optional, defaults to "/")
+
+FACEBOOK_APP_ID = "151607421598111"               # required
+
+FACEBOOK_APP_SECRET = "d6cf426e945250487a7edc62e321cb0c"  # required
+
+FACEBOOK_SCOPE = "public_profile,email"
+
