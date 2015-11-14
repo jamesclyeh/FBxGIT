@@ -25,7 +25,7 @@ def upload(request):
     formset = GoodsForm(request.POST)
     if formset.is_valid():
         print "HERE"
-	g = Goods(
+	    g = Goods(
             price = request.POST.get('price', ''),
             description = request.POST.get('description', ''),
             donor = 'donorXD',
@@ -33,6 +33,15 @@ def upload(request):
             picture = request.POST.get('picture', '')
         )
         g.save()
+    print "NOW"
+    return HttpResponse("Text", context_type = 'text/plain')
+    
+def sold(request):
+    formset = GoodsForm(request.POST)
+    if formset.is_valid():
+        print "HERE"
+        Goods.objects.filter(pk=request.POST.get('pk', '')).update(consumer=request.POST.get('consumer', ''))
+        Goods.objects.filter(pk=request.POST.get('pk', '')).update(status='S')
     print "NOW"
     return HttpResponse("Text", context_type = 'text/plain')
 
