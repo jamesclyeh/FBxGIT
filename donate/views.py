@@ -31,7 +31,7 @@ def upload(request):
     formset = GoodsForm(request.POST)
     if formset.is_valid():
         print "HERE"
-	    g = Goods(
+        g = Goods(
             price = request.POST.get('price', ''),
             description = request.POST.get('description', ''),
             donor = request.COOKIES['user_id'],
