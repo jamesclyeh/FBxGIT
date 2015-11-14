@@ -74,12 +74,12 @@ def upload(request):
     )
     g.save()
 
-    print facebook.GraphAPI(request.COOKIES['fb_token']).put_wall_post(
-        "I just put this item up to raise money for charity!!",
-        {"name": "Charty exchange",
-         "link": "http://140.113.89.232:12345/full_list/",
-         "caption": request.POST.get('name', ''),
-         "description": request.POST.get('description', '')})
+    # print facebook.GraphAPI(request.COOKIES['fb_token']).put_wall_post(
+    #     "I just put this item up to raise money for charity!!",
+    #     {"name": "Charty exchange",
+    #      "link": "http://140.113.89.232:12345/full_list/",
+    #      "caption": request.POST.get('name', ''),
+    #      "description": request.POST.get('description', '')})
 
     return TemplateResponse(request, 'index.html', {})
 
