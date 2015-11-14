@@ -61,13 +61,16 @@ def getUser(request):
 def upload(request):
     formset = GoodsForm(request.POST)
     u = User.objects.get(FB_ID = request.COOKIES['user_id'])
+    c = Charity.objects.get(name = request.POST['charity'])
     g = Goods(
         name = request.POST.get('name', ''),
         price = request.POST.get('price', ''),
         description = request.POST.get('description', ''),
         donor = u,
+        charity_donor = c,
         category = request.POST.get('category', ''),
-        picture = request.POST.get('picture', '')
+        picture = request.POST.get('picture', ''),
+        charity_consumer = c,
     )
     g.save()
 
