@@ -5,8 +5,6 @@ from django.template.response import TemplateResponse
 
 from donate.models import Goods
 
-import SQLiteUtil
-
 # Create your views here.
 
 def index(request):
