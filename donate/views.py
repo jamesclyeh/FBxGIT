@@ -22,18 +22,19 @@ def add_list(request):
     return TemplateResponse(request, 'add_list.html', dic)
 
 def upload(request):
-    g = Goods(name = request.POST.get('name', ''),
-        price = request.POST.get('price', ''),
-        description = request.POST.get('description', ''),
-        donor = request.POST.get('donor', ''),
-        comsumer = request.POST.get('comsumer', ''),
-        category = request.POST.get('category', ''),
-        status = request.POST.get('status', ''),
-        created_at = request.POST.get('created_at', ''),
-        picture = request.POST.get('picture', '')
-    )
-    g.save()
-    return HttpResponse(simplejson.dumps({'success':False}),mimetype = 'application/json')
+    formset = GoodsForm(request.POST)
+    if formset.is_valid():
+        print "HERE"
+	g = Goods(
+            price = request.POST.get('price', ''),
+            description = request.POST.get('description', ''),
+            donor = 'donorXD',
+            category = request.POST.get('category', ''),
+            picture = request.POST.get('picture', '')
+        )
+        g.save()
+    print "NOW"
+    return HttpResponse("Text", context_type = 'text/plain')
 
 def fblogin(request):
     template = loader.get_template('login.html')
