@@ -12,7 +12,7 @@
             <div class="panel-body">
                 <h5><b>Category:{% if item.category == 'C' %}Clothes{% elif item.category == 'M' %}Makeup and Cosmetics{% else %}Others{% endif %}</b></h5>
                 <div class="container">
-                    <img src="{% static item.picture %}" class="img-responsive"/><br>
+                    <img src="{% static item.picture %}" class="img-responsive" style="max-width: 300px;max-height: 300px"/><br>
                 </div>
                 {{ item.description }}
             </div>
