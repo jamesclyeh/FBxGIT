@@ -12,6 +12,8 @@ from donate.form import GoodsForm
 
 from facebook_connect.facebook_python_sdk import facebook
 
+import urllib
+
 # Create your views here.
 def index(request):
     dic = {}
@@ -19,6 +21,10 @@ def index(request):
     # lis = u.goods_donor.all()
     # dic['user'] = u
     # dic['goods'] = lis
+    if 'fb_token' in request.COOKIES:
+      token = request.COOKIES['fb_token']
+      pic = urllib.urlopen("https://graph.facebook.com/me/picture?"+urllib.urlencode({'access_token':token, 'height':200})).read()
+
     return TemplateResponse(request, 'index.html', {})
 
 def fonts(request):
@@ -75,13 +81,9 @@ def upload(request):
 
 @csrf_exempt
 def sold(request):
-    formset = GoodsForm(request.POST)
-    if formset.is_valid():
-        print "HERE"
-        Goods.objects.filter(pk=request.POST.get('pk', '')).update(consumer=request.POST.get('consumer', ''))
-        Goods.objects.filter(pk=request.POST.get('pk', '')).update(status='S')
-    print "NOW"
-    return HttpResponse("Text", context_type = 'text/plain')
+    g = Goods.objects.filter(pk=request.POST.get('pk', ''))
+    g.update(status='S')
+    return TemplateResponse(request, 'index.html', {})
 
 def fblogin(request):
     template = loader.get_template('login.html')

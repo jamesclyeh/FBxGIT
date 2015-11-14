@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^check_out/', views.check_out, name='check_out'),
     url(r'^upload', views.upload, name='upload'),
     url(r'^fonts/.*', views.fonts, name='fonts'),
+    url(r'^sold', views.sold, name='sold'),
     url(r'^facebook_connect/', include('facebook_connect.urls')),
 ]
