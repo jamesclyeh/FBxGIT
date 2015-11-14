@@ -5,7 +5,7 @@
 <div class="row" style="margin-top:20px">
     {% for item in goods %}
     <div class="col-md-6 col-sm-6">
-        <div class="panel panel-{% if item.status == 'S' %}success{% else %}warning{% endif %} bootcards-media">
+        <div class="panel panel-{% if item.status == 'U' %}success{% else %}warning{% endif %} bootcards-media">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ item.name }}</h3>
             </div>
