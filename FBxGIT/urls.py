@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^login/', views.fblogin, name='fblogin'),
     url(r'^full_list/', views.full_list, name='full_list'),
+    url(r'^upload/', views.upload, name='upload')
 ]
