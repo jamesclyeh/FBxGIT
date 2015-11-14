@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^login/', views.fblogin, name='fblogin'),
     url(r'^full_list/', views.full_list, name='full_list'),
     url(r'^upload/', views.upload, name='upload')
+    url(r'^facebook_connect/', include('facebook_connect.urls')),
 ]
